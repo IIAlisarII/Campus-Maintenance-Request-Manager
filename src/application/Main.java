@@ -7,6 +7,7 @@ package application;
  * This is where we run the whole thing!
  */
 public class Main {
+	RequestManager manager =new RequestManager();
 
 	/**
 	 * @param args
