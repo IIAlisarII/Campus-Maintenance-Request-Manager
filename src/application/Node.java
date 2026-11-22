@@ -4,13 +4,12 @@ package application;
 
 import java.io.Serializable;
 
-public class Node implements Serializable{
-	
+public class Node implements Serializable {
+
 	MaintenanceRequest request;
 	Node next;
-	
+
 	public Node(MaintenanceRequest request) {
-		super(); //why
 		this.request = request;
 		this.next = null;
 	}
@@ -30,7 +29,5 @@ public class Node implements Serializable{
 	public void setNext(Node next) {
 		this.next = next;
 	}
-	
-	
 
 }
