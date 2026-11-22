@@ -61,4 +61,61 @@ public class MaintenanceRequest implements Serializable{
 		this.priority=priority;
 		this.status= status.PENDING;
 	}
+
+	//roudha, getter setters etc.
+	
+	public static int getCountID() {
+		return countID;
+	}
+
+	public static void setCountID(int countID) {
+		MaintenanceRequest.countID = countID;
+	}
+
+	public int getRequestID() {
+		return requestID;
+	}
+
+	public void setRequestID(int requestID) {
+		this.requestID = requestID;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public priority getPriority() {
+		return priority;
+	}
+
+	public void setPriority(priority priority) {
+		this.priority = priority;
+	}
+
+	public status getStatus() {
+		return status;
+	}
+
+	public void setStatus(status status) {
+		this.status = status;
+	}
+	@Override
+	public String toString() {
+		return "MaintenanceRequest [requestID=" + requestID + ", location=" + location + ", description=" + description
+				+ ", priority=" + priority + ", status=" + status + "]";
+	}
+
 }
+
