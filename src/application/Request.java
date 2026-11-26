@@ -1,6 +1,11 @@
 package application;
 
 public class Request {
+	public enum Status{
+		// initial status is pending 
+		PENDING,
+		COMPLETED;
+	} 
 	
 	private static int countID = 1 ;
 	private int requestID;
@@ -8,6 +13,7 @@ public class Request {
 	private String description;
 	private int priority;
 	private Status status;
+	
 	
 	public Request(String location, String description, int priority) {
 		

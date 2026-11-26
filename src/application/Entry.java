@@ -1,6 +1,7 @@
 package application;
 
 public class Entry<E>{
+	// node for hash
 	int key;
 	E data;
 	public Entry(int k, E d)

@@ -2,6 +2,7 @@
 package application;
 
 public class Heap<E> {
+	// requests (priority)
 
     private Node<E> heapArray[];
     private int size;

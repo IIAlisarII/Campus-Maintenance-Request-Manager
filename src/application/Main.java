@@ -10,7 +10,7 @@ import java.util.Scanner;
  * This is where we run the whole thing!
  */
 public class Main {
-	public static RequestManager manager =new RequestManager();
+	public static MaintenanceRequestProcessor manager =new MaintenanceRequestProcessor();
 	public static Scanner input = new Scanner(System.in);
 
 	/**
