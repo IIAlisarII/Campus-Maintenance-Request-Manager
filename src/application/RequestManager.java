@@ -1,4 +1,4 @@
-package project1;
+package application;
 
 public class RequestManager<E> {
 	private DoubleHashTable<Request> requests = new DoubleHashTable<>(100000);
