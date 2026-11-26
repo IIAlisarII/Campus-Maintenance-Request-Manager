@@ -1,33 +1,18 @@
-package application;
 
-//first link in the chain
+package project1;
 
-import java.io.Serializable;
+public class Node<E> {
 
-public class Node implements Serializable {
+    long key;
+    E data;
 
-	MaintenanceRequest request;
-	Node next;
+    public Node(long k, E d) {
+        key = k;
+        data = d;
+    }
 
-	public Node(MaintenanceRequest request) {
-		this.request = request;
-		this.next = null;
-	}
-
-	public MaintenanceRequest getRequest() {
-		return request;
-	}
-
-	public void setRequest(MaintenanceRequest request) {
-		this.request = request;
-	}
-
-	public Node getNext() {
-		return next;
-	}
-
-	public void setNext(Node next) {
-		this.next = next;
-	}
-
+    public void display() {
+        System.out.print("Key: " + key);
+        System.out.println(data);
+    }
 }
