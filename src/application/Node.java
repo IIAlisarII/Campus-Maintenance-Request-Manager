@@ -1,5 +1,5 @@
 
-package project1;
+package application;
 
 public class Node<E> {
 
