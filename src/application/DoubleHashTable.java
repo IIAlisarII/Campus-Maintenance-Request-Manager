@@ -1,4 +1,4 @@
-package project1;
+package application;
 
 
 public class DoubleHashTable<E>
