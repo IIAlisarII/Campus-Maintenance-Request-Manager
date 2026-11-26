@@ -19,13 +19,12 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Loading data (person 4)
 		try {
-			RequestManager.load(); 
 			int choice;
 			while(true) {
 	       	 System.out.printf("====== %s ======\n", "Campus Maintenance Request Manager");
 	       	 System.out.printf("1. %s\n2. %s\n3. %s\n4. %s\n5. %s\n\nEnter menu option:\n", 
 	       			 "Add a new maintenance request","Search for a request by ID",
-	       			 " Display pending requests in priority order","Process The Next Request"
+	       			 "Display pending requests in priority order","Process The Next Request"
 	       			 ,"Exit");
 	       	 choice = input.nextInt();
 	       	 switch (choice) {
