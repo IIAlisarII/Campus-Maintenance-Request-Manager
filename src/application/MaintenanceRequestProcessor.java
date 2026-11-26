@@ -47,25 +47,8 @@ public class MaintenanceRequestProcessor {
 	}
 	
 	
-	public void displayPendingRequests() {
-		Node[] temp = new Node[pendingRequests.size()];
-		int index =0;
-		
-		while (!pendingRequests.isEmpty()) {
-			Node <Request> r = pendingRequests.removeMax();
-			temp[index] = r; //add to temp
-			index++;
-			System.out.println(r.data);
-			
 
-	}
-		
-		for (int i =0;i<temp.length;i++ ) {
-			pendingRequests.insert(temp[i].key, (Request) temp[i].data); 
-		}
-	}
 	
-	//best
 	
 	public void displayPendingRequests2() {
 		if (!pendingRequests.isEmpty()) {
