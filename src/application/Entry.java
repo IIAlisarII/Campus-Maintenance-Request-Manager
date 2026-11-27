@@ -1,6 +1,8 @@
 package application;
 
-public class Entry<E>{
+import java.io.Serializable;
+
+public class Entry<E> implements Serializable{
 	// node for hash
 	int key;
 	E data;

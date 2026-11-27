@@ -1,21 +1,22 @@
 package application;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class MaintenanceRequestProcessor {
+public class MaintenanceRequestProcessor implements Serializable {
 	private RequestManager<Request> manager;
 	private Heap<Request> pendingRequests;
 	
 	
-	public MaintenanceRequestProcessor(int size){
+	public MaintenanceRequestProcessor(){
 		manager = new RequestManager<>();
 		pendingRequests = new Heap<>(100007);
-	}
-	
-	public MaintenanceRequestProcessor() {
-		// TODO why do we need an int ?
 	}
 
 	public Request search(int id) {
@@ -85,25 +86,39 @@ public class MaintenanceRequestProcessor {
 	// i set save() as a boolean so that it simply flags whether the save
 		// was successful or not
 		public boolean save(){
-			try (ObjectOutputStream f = new ObjectOutputStream(new FileOutputStream(FILE)))
+			try (ObjectOutputStream f = new ObjectOutputStream(new FileOutputStream("requests.dat")))
 			{
 				f.writeObject(this);
 				return true;
 			}
 			catch (IOException e) {
-				System.out.println("Save failed: " + e.getMessage());
+				System.out.println("Save failed: "+e.getMessage());
+				e.printStackTrace();
 				return false;
 			}
 				
 		}
 		
-		public static Request load() {
-			return null;
-			// i used static because this will read the file
-			// then build the request manager from it 
-			// we need it to be static because there wont be
-			// a manager instance to build this from
-			// because it isnt for a particular object ?
+		public static MaintenanceRequestProcessor load() {
+			File file = new File("requests.dat");
+			
+			// if file doesnt exist, create a new processor
+			if (!file.exists()) {
+				return new MaintenanceRequestProcessor();
+			}
+			
+			try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+				//read the object and cast it back to RequestManager
+				MaintenanceRequestProcessor loadedManager = (MaintenanceRequestProcessor) in.readObject();
+				return loadedManager;
+				
+			} 
+			catch (IOException | ClassNotFoundException e) {
+		        //if the file is corrupted or reading fails, report error and start empty
+		        System.err.println("Error loading data: " + e.getMessage());
+		        System.err.println("Starting with an empty request list.");
+		        return new MaintenanceRequestProcessor();
+		    }
 		}
 	
 }

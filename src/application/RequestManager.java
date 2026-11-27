@@ -1,6 +1,8 @@
 package application;
 
-public class RequestManager<E> {
+import java.io.Serializable;
+
+public class RequestManager<E> implements Serializable{
 	private DoubleHashTable<Request> requests = new DoubleHashTable<>(100007); 
 	//size should be prime, why?
 	//to make sure hashfunc = 9 - k%9  can reach all slots in our array
@@ -15,7 +17,7 @@ public class RequestManager<E> {
 	}
 	
 	public Request searchID(int id) {
-			return requests.find(id);
+			return (Request)requests.find(id);
 	}
 
 	

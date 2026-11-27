@@ -1,7 +1,8 @@
 package application;
 
+import java.io.Serializable;
 
-public class DoubleHashTable<E>
+public class DoubleHashTable<E> implements Serializable
 {
 	 Entry[] hashArray; 
 	 Entry  defunct;   

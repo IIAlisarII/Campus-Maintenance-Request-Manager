@@ -1,7 +1,9 @@
 
 package application;
 
-public class Heap<E> {
+import java.io.Serializable;
+
+public class Heap<E> implements Serializable{
 	// requests (priority)
 
     private Node<E> heapArray[];

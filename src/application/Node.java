@@ -1,7 +1,10 @@
 
 package application;
 
-public class Node<E> {
+import java.io.Serializable;
+
+public class Node<E> implements Serializable{
+	// for hash !
 
     long key;
     E data;
