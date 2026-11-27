@@ -3,19 +3,17 @@ package application;
 
 import java.io.Serializable;
 
-public class Node<E> implements Serializable{
-	// for hash !
+public class Node<E> implements Serializable {
+	long key;
+	E data;
 
-    long key;
-    E data;
+	public Node(long k, E d) {
+		key = k;
+		data = d;
+	}
 
-    public Node(long k, E d) {
-        key = k;
-        data = d;
-    }
-
-    public void display() {
-        System.out.print("Key: " + key);
-        System.out.println(data);
-    }
+	public void display() {
+		System.out.print("Key: " + key);
+		System.out.println(data);
+	}
 }

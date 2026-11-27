@@ -3,109 +3,107 @@ package application;
 
 import java.io.Serializable;
 
-public class Heap<E> implements Serializable{
-	// requests (priority)
+public class Heap<E> implements Serializable {
 
-    private Node<E> heapArray[];
-    private int size;
+	private Node<E> heapArray[];
+	private int size;
 
-    public Heap(int mx) {
-        size = 0;
-        heapArray = new Node[mx];
-    }
+	public Heap(int mx) {
+		size = 0;
+		heapArray = new Node[mx];
+	}
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
+	public boolean isEmpty() {
+		return size == 0;
+	}
 
-    public int size() {
-        return size;
-    }
-    
-    public boolean isFull() {
-    	return size==heapArray.length;
-    }
+	public int size() {
+		return size;
+	}
 
-    private void upheap(int i) {
+	public boolean isFull() {
+		return size == heapArray.length;
+	}
 
-        int parent = (i - 1) / 2;
-        Node<E> bottom = heapArray[i];
+	private void upheap(int i) {
 
-        while (i > 0 && heapArray[parent].key < bottom.key) {
-            heapArray[i] = heapArray[parent];
-            i = parent;
-            parent = (i - 1) / 2;
-        }
+		int parent = (i - 1) / 2;
+		Node<E> bottom = heapArray[i];
 
-        heapArray[i] = bottom;
-    }
+		while (i > 0 && heapArray[parent].key < bottom.key) {
+			heapArray[i] = heapArray[parent];
+			i = parent;
+			parent = (i - 1) / 2;
+		}
 
-    public void insert(long k, E d) {
-        if (size == heapArray.length)
-            throw new IllegalStateException("Heap is full");
+		heapArray[i] = bottom;
+	}
 
-        Node<E> newNode = new Node<>(k, d);
-        heapArray[size] = newNode;
-        upheap(size);
-        size++;
-    }
+	public void insert(long k, E d) {
+		if (size == heapArray.length)
+			throw new IllegalStateException("Heap is full");
 
-    private boolean hasLeftChild(int i) {
-        return (2 * i + 1) < size;
-    }
+		Node<E> newNode = new Node<>(k, d);
+		heapArray[size] = newNode;
+		upheap(size);
+		size++;
+	}
 
-    private boolean hasRightChild(int i) {
-        return (2 * i + 2) < size;
-    }
+	private boolean hasLeftChild(int i) {
+		return (2 * i + 1) < size;
+	}
 
-    public void downHeap(int i) {
+	private boolean hasRightChild(int i) {
+		return (2 * i + 2) < size;
+	}
 
-        Node<E> top = heapArray[i];
+	public void downHeap(int i) {
 
-        while (hasLeftChild(i)) {
+		Node<E> top = heapArray[i];
 
-            int leftChild = 2 * i + 1;
-            int largerChild = leftChild;
+		while (hasLeftChild(i)) {
 
-            if (hasRightChild(i)) {
-                int rightChild = 2 * i + 2;
+			int leftChild = 2 * i + 1;
+			int largerChild = leftChild;
 
-                if (heapArray[rightChild].key >
-                    heapArray[leftChild].key)
-                    largerChild = rightChild;
-            }
+			if (hasRightChild(i)) {
+				int rightChild = 2 * i + 2;
 
-            if (top.key >= heapArray[largerChild].key)
-                break;
+				if (heapArray[rightChild].key > heapArray[leftChild].key)
+					largerChild = rightChild;
+			}
 
-            heapArray[i] = heapArray[largerChild];
-            i = largerChild;
-        }
+			if (top.key >= heapArray[largerChild].key)
+				break;
 
-        heapArray[i] = top;
-    }
+			heapArray[i] = heapArray[largerChild];
+			i = largerChild;
+		}
 
-    public Node<E> removeMax() {
+		heapArray[i] = top;
+	}
 
-        if (isEmpty())
-            return null;
+	public Node<E> removeMax() {
 
-        Node<E> tmp = heapArray[0];
+		if (isEmpty())
+			return null;
 
-        heapArray[0] = heapArray[--size];
-        heapArray[size] = null;
+		Node<E> tmp = heapArray[0];
 
-        if (size > 0)
-            downHeap(0);
+		heapArray[0] = heapArray[--size];
+		heapArray[size] = null;
 
-        return tmp;
-    }
+		if (size > 0)
+			downHeap(0);
 
-    public Node<E> max() {
-        if (isEmpty())
-            return null;
+		return tmp;
+	}
 
-        return heapArray[0];
-    }
+	public Node<E> max() {
+		if (isEmpty())
+			return null;
+
+		return heapArray[0];
+	}
 
 }
