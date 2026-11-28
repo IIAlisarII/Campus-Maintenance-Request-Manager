@@ -55,7 +55,7 @@ public class Main {
 					System.out.println("Invalid Option");
 				}
 			} catch (InputMismatchException e) {
-				System.out.println("Invalid Entry Type! Enter a number from 1-5.");
+				System.out.println("Invalid Entry Type!");
 				input.nextLine();
 				continue;
 			}
