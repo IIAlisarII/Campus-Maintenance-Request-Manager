@@ -22,7 +22,7 @@ public class MaintenanceRequestProcessor  implements Serializable{
 	}
 	
 	
-	//Q1 complexity O(1) 
+	//Q1 
 	public void add(String location, String description, int priority) {
 		
 		if(pendingRequests.isFull() || manager.isFull())
