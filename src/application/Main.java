@@ -1,6 +1,3 @@
-/**
- * 
- */
 package application;
 
 import java.util.InputMismatchException;
@@ -18,7 +15,7 @@ public class Main {
 				System.out.printf("====== %s ======\n", "Campus Maintenance Request Manager");
 				System.out.printf("1. %s\n2. %s\n3. %s\n4. %s\n5. %s\n\nEnter menu option:\n",
 						"Add a new maintenance request", "Search for a request by ID",
-						"Display pending requests in priority order", "Process The Next Request", "Exit");
+						"Display pending requests in priority order", "Process The Next Request", " Exit");
 				choice = input.nextInt();
 				switch (choice) {
 				case 1:
@@ -31,7 +28,7 @@ public class Main {
 						System.out.println("input Priority (1-3):");
 						int pInput = input.nextInt();
 
-						addNewRequest(lInput, dInput, pInput);
+						manager.add(lInput, dInput, pInput);
 					} catch (InputMismatchException e) {
 						System.out.println("Invalid Entry Type!");
 					}
@@ -40,57 +37,39 @@ public class Main {
 				case 2:
 					System.out.println("input ID:");
 					int idInput = input.nextInt();
-					searchById(idInput);
+					Request request = manager.searchID(idInput);
+					if (request == null) {
+						System.out.println("Request not found!");
+					} else {
+						System.out.println(request);
+					}
 					break;
 				case 3:
-					displayPending();
+					manager.displayPendingRequests();
 					break;
 				case 4:
-					processNextRequest();
+					manager.processNextRequest();
 					break;
 				case 5:
-					exit();
+					System.out.println("Exiting ...");
+					input.close();
+					boolean saved = manager.save();
+					if(saved == true)
+						System.out.println("Data saved successfully");
+					else {
+						System.out.println("Data not saved");
+					}
+					System.exit(0);
 					break;
 				default:
 					System.out.println("Invalid Option");
 				}
 			} catch (InputMismatchException e) {
-				System.out.println("Invalid Entry Type!");
+				System.out.println("Invalid Entry Type! Enter a number from 1-5.");
 				input.nextLine();
 				continue;
 			}
 		}
-
-	}
-
-	private static void exit() {
-		System.out.println("Exiting ...");
-		input.close();
-		manager.save();
-		System.exit(0);
-	}
-
-	private static void processNextRequest() {
-		manager.processNextRequest();
-
-	}
-
-	private static void displayPending() {
-		manager.displayPendingRequests();
-
-	}
-
-	private static void searchById(int i) {
-		if (manager.searchID(i) == null) {
-			System.out.println("Request not found!");
-		} else {
-			System.out.println(manager.searchID(i).toString());
-		}
-
-	}
-
-	private static void addNewRequest(String location, String description, int priority) {
-		manager.add(location, description, priority);
 
 	}
 
